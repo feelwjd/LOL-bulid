@@ -83,7 +83,7 @@
 
 <script>
 import { ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/signup.vue'
 
 export default {
   name: 'LayoutDefault',
