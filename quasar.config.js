@@ -1,0 +1,8 @@
+{
+    [
+      ...
+      'QTabs',
+      'QTab',
+      'QRouteTab'
+    ]
+  }
