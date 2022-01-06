@@ -31,9 +31,15 @@
     </q-scroll-area>
     </div>
   </div>
+  <div>
+    <champ-select></champ-select>
+  </div>
 </template>
 
 <script>
+
+import ChampSelect from '../components/ChampSelect.vue'
+
 const maxSize = 280
 const heavyList = []
 
@@ -44,6 +50,7 @@ for (let i = 0; i < maxSize; i++) {
 }
 
 export default {
+  components: { ChampSelect },
   setup () {
     return {
       heavyList,
