@@ -1,63 +1,80 @@
 <template>
-    <div class="col-3">
+  <div class="q-ma-md">
+  <div
+    :filter="filter"
+    >
+    <q-scroll-area
+      :thumb-style="thumbStyle"
+      :bar-style="barStyle"
+      style="height: 200px"
+      id="scroll-area-with-virtual-scroll-1"
+    >
+      <q-virtual-scroll
+        scroll-target="#scroll-area-with-virtual-scroll-1 > .scroll"
+        :items="heavyList"
+        :virtual-scroll-item-size="32"
+        separator
+      >
+        <template v-slot="{ item, index }">
+          <q-item
+            :key="index"
+            dense
+          >
+            <q-item-section>
+              <q-item-label>
+                #{{ index }} - {{ item.label }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </template>
+      </q-virtual-scroll>
+    </q-scroll-area>
     </div>
-    <div class="col-9">
-        <div class="row">
-            <div class="col">
-                <h6 class="text-left">챔피언 선택</h6>
-            </div>
-
-        </div>
-    </div>
-    <div class="col-3">
-    </div>
+  </div>
+  <div>
+    <champ-select></champ-select>
+  </div>
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
+
+import ChampSelect from '../components/ChampSelect.vue'
+
+const maxSize = 280
+const heavyList = []
+
+for (let i = 0; i < maxSize; i++) {
+  heavyList.push({
+    label: 'Option ' + (i + 1)
+  })
+}
 
 export default {
+  components: { ChampSelect },
   setup () {
-    const $q = useQuasar()
-
-    const name = ref(null)
-    const password = ref(null)
-
     return {
-      name,
-      password,
+      heavyList,
 
-      onSubmit () {
-        if (name.value !== "") {
-          name.value = null
-          password.value = null
-          $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'warning',
-            message: 'You need to accept the license and terms first'
-          })
-        }
-        else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Submitted'
-          })
-        }
+      thumbStyle: {
+        right: '5px',
+        borderRadius: '8px',
+        backgroundColor: '#027be3',
+        width: '8px',
+        opacity: 0.75
       },
+
+      barStyle: {
+        right: '2px',
+        borderRadius: '14px',
+        backgroundColor: '#027be3',
+        width: '14px',
+        opacity: 0.2,
+        marginTop: '-3px',
+        marginBottom: '-3px',
+        paddingTop: '3px',
+        paddingBottom: '3px'
+      }
     }
   }
 }
 </script>
-<style>
-    #root {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top:10%;
-        font-family: "Abel", "sans-serif";
-    }
-</style>
