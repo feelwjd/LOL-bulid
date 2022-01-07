@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Login from '@/views/login.vue';
 import Signup from '@/views/signup.vue';
 import SwordWindBuild from '@/views/sword-wind-build.vue';
+import BuildDetail from '@/views/build-detail.vue';
 const routes = [
   {
     path: "/",
@@ -18,6 +19,11 @@ const routes = [
     name: "sword-wind-build",
     component: SwordWindBuild,
   },
+  {
+    path: "/build-detail",
+    name: "build-detail",
+    component: BuildDetail,
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),
