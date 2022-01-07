@@ -25,6 +25,7 @@
 				<q-input
                     style="width:464px"
                     outlined
+                    maxlength="16"
                     id="password"
                     v-model="password"
                     type="password"
@@ -41,15 +42,18 @@
 				<q-input
                     style="width:464px"
                     outlined
+                    maxlength="16"
                     id="pw_confirm"
                     v-model="pw_confirm"
                     type="password"
-                    lazy-rules
-                    :rules="[ val => val && val.length > 0 || '비밀번호를 다시 입력하세요']">
+                    @blur="passwordCheckValid">
                     <template v-slot:prepend>
                         <q-icon name="lock" />
                     </template>
                 </q-input>
+                <div v-if="!passwordCheckFlag">
+                    비밀번호가 동일하지 않습니다!
+                </div>
 			</div>
             <div style="height:10px"></div>
 			<div>
@@ -68,26 +72,44 @@
                 </q-input>
 			</div>
             <div style="height:10px"></div>
-			<q-btn color="black" type="submit" style="width:464px" label="가입하기"></q-btn>
+			<q-btn color="black" type="submit" style="width:464px" label="가입하기" @click="registered"></q-btn>
 		</q-form>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'SignupForm',
 	data() {
 		return {
-			email: '',
-			password: '',
-			passwordConfirm: '',
-            name: ''
+            signup: {
+                email: null,
+                password: null,
+                name: ''
+            },
+            pw_confirm:'',
+            passwordCheckFlag: true
 		};
 	},
 	methods: {
-		submitForm() {
-			console.log('dd');
-		},
+        passwordCheckValid(){
+            if(this.password == this.pw_confirm) {
+                this.passwordCheckFlag = true
+            } else if(this.pw_confirm == "") {
+                this.passwordCheckFlag = true
+            } else {
+                this.passwordCheckFlag = false
+            }
+        },
+        registered(){
+            if (this.email == null || this.password == null || this.name == null) { alert('필수 입력 사항이 누락되었습니다!') 
+            return 
+            }
+            if (!this.passwordCheckFlag) { alert('비밀번호를 다시 확인해주세요.') 
+            return
+            }
+            alert('회원가입이 완료되었습니다.') 
+            this.$router.push({ name: 'signup', params: { signup: this.signup } })
+        }
 	},
 };
 </script>

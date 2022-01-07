@@ -3,7 +3,7 @@
     </div>
     <div id="login_root">
         <q-form @submit="on_submit" >
-            <h6 class="text-left">로그인</h6>
+            <h5 class="text-left">로그인</h5>
             <q-input
                 style="width:464px"
                 filled

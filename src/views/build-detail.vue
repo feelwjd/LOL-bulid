@@ -2,7 +2,7 @@
     <div style="height:50px; background-color:#C4C4C4"></div>
     <div class="container">
         <div class="header">
-
+            hello world
         </div>
         <div class="contents">
             <div class="box"></div>
@@ -20,7 +20,9 @@ export default {
 
 <style scoped>
 .container {
-    padding : 50px 50px;
-    margin : 100px 100px;
+    margin : 60px auto;
+    width : 1000px;
+    background-color : rgb(223, 223, 223);
+    padding : 30px 30px;
 }
 </style>
