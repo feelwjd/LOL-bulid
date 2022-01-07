@@ -55,7 +55,7 @@
                     비밀번호가 동일하지 않습니다!
                 </div>
 			</div>
-            <div style="height:10px"></div>
+            <div style="height:20px"></div>
 			<div>
 				<label for="name">닉네임</label>
 				<q-input

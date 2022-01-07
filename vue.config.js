@@ -9,7 +9,7 @@ module.exports = {
     'quasar'
   ],
   devServer: {
-    allowedHosts : 'all',
+    clientLogLevel : 'silent',
     disableHostCheck: true
   }
 }
