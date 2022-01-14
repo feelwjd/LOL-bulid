@@ -38,43 +38,42 @@
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
+const HOST = "";
 
-export default {
-  setup () {
-    const $q = useQuasar()
+export default { 
+    data() { 
+        return { 
+            userId: null, 
+            userPassword: null, 
+        };
+    }, 
+    methods: { 
+        loginSubmit() { 
+            let saveData = {}; 
+            saveData.userId = this.userId; 
+            saveData.userPassword = this.userPassword; 
+            
+            try { 
+                this.$axios 
+                    .post(HOST + "/signin", JSON.stringify(saveData), { 
+                        headers: { 
+                            "Content-Type": `application/json`, 
+                        },
+                    }) 
+                    .then((res) => { 
+                        if (res.status === 200) { 
+                            // 로그인 성공시 처리해줘야할 부분
+                            this.$store.commit("login", res.data);
+                            this.$router.push("이동할 페이지 path");
+                        } 
+                      }); 
+            } catch (error) { 
+                console.error(error); 
+            }
+        }, 
+    }, 
+};
 
-    const name = ref(null)
-    const password = ref(null)
-
-    return {
-      name,
-      password,
-
-      onSubmit () {
-        if (name.value !== "") {
-          name.value = null
-          password.value = null
-          $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            icon: 'warning',
-            message: 'You need to accept the license and terms first'
-          })
-        }
-        else {
-          $q.notify({
-            color: 'green-4',
-            textColor: 'white',
-            icon: 'cloud_done',
-            message: 'Submitted'
-          })
-        }
-      },
-    }
-  }
-}
 </script>
 <style>
     #login_root {
