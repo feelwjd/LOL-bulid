@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <champ-select></champ-select>
+  </div>
   <div class="q-ma-md">
   <div
     :filter="filter"
@@ -30,9 +33,6 @@
       </q-virtual-scroll>
     </q-scroll-area>
     </div>
-  </div>
-  <div>
-    <champ-select></champ-select>
   </div>
 </template>
 
