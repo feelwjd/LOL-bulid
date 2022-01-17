@@ -27,7 +27,7 @@
 
               <template v-slot:item="props">
                 <div class="q-pa-xs col-xs-10 col-sm-1 col-md-1">
-                  <q-card v-ripple class="my-box cursor-pointer q-hoverable">
+                  <q-card v-ripple @click="doSomething" class="my-box cursor-pointer q-hoverable">
                     <q-img :src=props.row.url >
                       <div class="absolute-bottom text-subtitle2 text-center">
                         <strong>{{ props.row.name }}</strong>
@@ -202,6 +202,12 @@ export default {
       filter: ref(''),
       columns,
       rows
+    }
+  },
+  methods: {
+    doSomething () {
+      console.log(this.$data.label);
+      this.$router.push('/'+this.$rows.name+'')
     }
   }
 }
