@@ -1,6 +1,4 @@
 <template>
-    <div style="height:50px; background-color:#C4C4C4">
-    </div>
     <div id="signup_root">
         <q-form @submit.prevent="submitForm">
             <h5 class="text-center" style="font-family: Abel">회원가입</h5>
@@ -12,8 +10,10 @@
                     id="email"
                     v-model="email"
                     type="email"
-                    lazy-rules
-                    :rules="[ val => val && val.length > 0 || '아이디를 입력하세요']">
+                    @blur="emailCheck"
+                    bottom-slots
+                    error-message="이메일을 정확히 입력해주세요"
+                    :error="!emailCheckFlag">
                     <template v-slot:prepend>
                         <q-icon name="mail" />
                     </template>
@@ -29,8 +29,10 @@
                     id="password"
                     v-model="password"
                     type="password"
-                    lazy-rules
-                    :rules="[ val => val && val.length > 0 || '비밀번호를 입력하세요']">
+                    @blur="pwCheck"
+                    bottom-slots
+                    error-message="비밀번호를 정확히 입력해주세요"
+                    :error="!pwCheckFlag">
                     <template v-slot:prepend>
                         <q-icon name="lock" />
                     </template>
@@ -46,14 +48,14 @@
                     id="pw_confirm"
                     v-model="pw_confirm"
                     type="password"
-                    @blur="passwordCheckValid">
+                    @blur="passwordCheckValid"
+                    bottom-slots
+                    error-message="비밀번호가 일치하지 않습니다!"
+                    :error="!passwordCheckFlag">
                     <template v-slot:prepend>
                         <q-icon name="lock" />
                     </template>
                 </q-input>
-                <div v-if="!passwordCheckFlag">
-                    비밀번호가 동일하지 않습니다!
-                </div>
 			</div>
             <div style="height:20px"></div>
 			<div>
@@ -64,8 +66,10 @@
                     id="name"
                     v-model="name"
                     type="text"
-                    lazy-rules
-                    :rules="[ val => val && val.length > 0 || '닉네임을 입력하세요']">
+                    @blur="nameCheck"
+                    bottom-slots
+                    error-message="닉네임을 정확히 입력해주세요"
+                    :error="!nameCheckFlag">
                     <template v-slot:prepend>
                         <q-icon name="person" />
                     </template>
@@ -82,15 +86,39 @@ export default {
 	data() {
 		return {
             signup: {
-                email: null,
-                password: null,
+                email: '',
+                password: '',
                 name: ''
             },
+            emailCheckFlag: true,
+            pwCheckFlag: true,
+            nameCheckFlag: true,
             pw_confirm:'',
             passwordCheckFlag: true
 		};
 	},
 	methods: {
+        emailCheck(){
+            if(this.email == null){
+                this.emailCheckFlag = false
+            } else {
+                this.emailCheckFlag = true
+            }
+        },
+        pwCheck(){
+            if(this.password == null){
+                this.pwCheckFlag = false
+            } else {
+                this.pwCheckFlag = true
+            }
+        },
+        nameCheck(){
+            if(this.name == null){
+                this.nameCheckFlag = false
+            } else {
+                this.nameCheckFlag = true
+            }
+        },
         passwordCheckValid(){
             if(this.password == this.pw_confirm) {
                 this.passwordCheckFlag = true

@@ -1,6 +1,4 @@
 <template>
-    <div style="height:50px; background-color:#C4C4C4">
-    </div>
     <div id="login_root">
         <q-form @submit="on_submit" >
             <h5 class="text-left">로그인</h5>
