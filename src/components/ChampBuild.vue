@@ -1,98 +1,114 @@
 <template>
-<div class="q-ma-md">
-  <div
-    :filter="filter"
-    >
-    <q-scroll-area
-      :thumb-style="thumbStyle"
-      :bar-style="barStyle"
-      style="height: 400px"
-      id="scroll-area-with-virtual-scroll-1"
-    >
-      <q-virtual-scroll
-        scroll-target="#scroll-area-with-virtual-scroll-1 > .scroll"
-        :items="heavyList"
-        :virtual-scroll-item-size="32"
-        separator
-      >
-        <template v-slot="{ item, index }">
-          <q-item
-            :key="index"
-            dense
+        <div class="q-pa-md">
+          <q-table
+            :grid="$q.screen.xs"
+            title="Treats"
+            :rows="rows"
+            :columns="columns"
+            row-key="name"
+            :filter="filter"
+            hide-header
+            v-model:pagination="pagination"
+            :rows-per-page-options="[0]"
           >
-            <q-item-section>
-              <q-item-label class="build">
-                #{{ index }} - {{ item.label }} - {{champ}}
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple>
-            <q-item-section>OOO 빌드 xxxx 버전</q-item-section>
-            <q-item-section avatar>
-              <q-avatar>
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-              </q-avatar>
-            </q-item-section>
-            <q-item-section></q-item-section>
-          </q-item>
-        </template>
-      </q-virtual-scroll>
-    </q-scroll-area>
-    </div>
-  </div>
+            <template v-slot:top-right>
+              <q-input borderless dense debounce="300" v-model="filter" placeholder="Search">
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </template>
+          </q-table>
+        </div>
 </template>
 
 <script>
-const maxSize = 20
-const heavyList = []
+import { ref } from 'vue'
 
-for (let i = 0; i < maxSize; i++) {
-  heavyList.push({
-    label: '' + (i + 1)
-  })
-}
+const columns = [
+  {
+    name: 'desc',
+    required: true,
+    label: 'Dessert (100g serving)',
+    align: 'left',
+    field: row => row.name,
+    format: val => `${val}`,
+    sortable: true
+  },
+  { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
+  { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
+  { name: 'carbs', label: 'Carbs (g)', field: 'carbs' }
+]
+
+const rows = [
+  {
+    name: 'Frozen Yogurt',
+    calories: 159,
+    fat: 6.0,
+    carbs: 24
+  },
+  {
+    name: 'Ice cream sandwich',
+    calories: 237,
+    fat: 9.0,
+    carbs: 37
+  },
+  {
+    name: 'Eclair',
+    calories: 262,
+    fat: 16.0,
+    carbs: 23
+  },
+  {
+    name: 'Cupcake',
+    calories: 305,
+    fat: 3.7,
+    carbs: 67
+  },
+  {
+    name: 'Gingerbread',
+    calories: 356,
+    fat: 16.0,
+    carbs: 49
+  },
+  {
+    name: 'Jelly bean',
+    calories: 375,
+    fat: 0.0,
+    carbs: 94
+  },
+  {
+    name: 'Lollipop',
+    calories: 392,
+    fat: 0.2,
+    carbs: 98
+  },
+  {
+    name: 'Honeycomb',
+    calories: 408,
+    fat: 3.2,
+    carbs: 87
+  },
+  {
+    name: 'Donut',
+    calories: 452,
+    fat: 25.0,
+    carbs: 51
+  },
+  {
+    name: 'KitKat',
+    calories: 518,
+    fat: 26.0,
+    carbs: 65
+  }
+]
 
 export default {
-  name: 'champbuild',
-  props: ["value"],
-
-
   setup () {
-  
-      return {
-      heavyList,
-
-      thumbStyle: {
-        right: '5px',
-        borderRadius: '8px',
-        backgroundColor: '#027be3',
-        width: '8px',
-        opacity: 0.75
-      },
-
-      barStyle: {
-        right: '2px',
-        borderRadius: '14px',
-        backgroundColor: '#027be3',
-        width: '14px',
-        opacity: 0.2,
-        marginTop: '-3px',
-        marginBottom: '-3px',
-        paddingTop: '3px',
-        paddingBottom: '3px'
-      }
-    }
-  },
-  watch:{
-    build(){
-      this.champ = this.value
-      this.$forceUpdate();
-    }
-  },
-
-  data () {
-    return{
-    champ : this.value
+    return {
+      filter: ref(''),
+      columns,
+      rows
     }
   }
 }

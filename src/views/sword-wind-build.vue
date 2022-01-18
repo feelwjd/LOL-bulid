@@ -55,7 +55,6 @@
 <script>
 import { ref } from 'vue'
 import ChampBuild from '../components/ChampBuild.vue'
-
 const columns = [
   {
     name: 'champ',
@@ -195,7 +194,6 @@ const rows = [
     url:"http://ddragon.leagueoflegends.com/cdn/12.1.1/img/champion/Draven.png"
   }
 ]
-
 export default {
   components: {ChampBuild},
   name: 'sword-wind-build',
