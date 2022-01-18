@@ -47,7 +47,7 @@
   </div>
 
   <div>
-    <champ-build v-bind:value="select"></champ-build>
+    <champ-build v-bind:value="c_name" :key="rederkey"></champ-build>
   </div>
 
 </template>
@@ -55,7 +55,7 @@
 <script>
 import { ref } from 'vue'
 import ChampBuild from '../components/ChampBuild.vue'
-
+let c_name;
 const columns = [
   {
     name: 'champ',
@@ -195,7 +195,6 @@ const rows = [
     url:"http://ddragon.leagueoflegends.com/cdn/12.1.1/img/champion/Draven.png"
   }
 ]
-
 export default {
   components: {ChampBuild},
   name: 'sword-wind-build',
@@ -204,21 +203,22 @@ export default {
       filter: ref(''),
       columns,
       rows,
+      c_name
     }
   },
   data () {
     return{
-      value: this.targetId
+      value: this.targetId,
+      rederkey: 0
     }
   },
   methods: {
     select(event) {
       let targetId = event.currentTarget.id;
       console.log(targetId);
-      return {
-        targetId
-      }
-      
+      this.c_name = targetId;
+      this.rederkey +=1;
+      console.log(this.c_name);
     }
   }
 }

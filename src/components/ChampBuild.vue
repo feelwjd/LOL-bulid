@@ -85,7 +85,7 @@ export default {
   },
   watch:{
     build(){
-      this.champ = this.value
+      this.champ = this.props
       this.$forceUpdate();
     }
   },
