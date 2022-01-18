@@ -27,12 +27,13 @@
             </q-item-section>
           </q-item>
           <q-item clickable v-ripple>
+            <q-item-section>OOO 빌드 xxxx 버전</q-item-section>
             <q-item-section avatar>
               <q-avatar>
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png">
               </q-avatar>
             </q-item-section>
-            <q-item-section>Image avatar</q-item-section>
+            <q-item-section></q-item-section>
           </q-item>
         </template>
       </q-virtual-scroll>
@@ -85,6 +86,7 @@ export default {
   watch:{
     build(){
       this.champ = this.value
+      this.$forceUpdate();
     }
   },
 

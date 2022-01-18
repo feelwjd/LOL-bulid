@@ -47,7 +47,7 @@
   </div>
 
   <div>
-    <champ-build></champ-build>
+    <champ-build v-bind:value="select"></champ-build>
   </div>
 
 </template>
