@@ -21,8 +21,8 @@
             dense
           >
             <q-item-section>
-              <q-item-label>
-                #{{ index }} - {{ item.label }}
+              <q-item-label class="build">
+                #{{ index }} - {{ item.label }} - {{champ}}
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -47,12 +47,14 @@ const heavyList = []
 
 for (let i = 0; i < maxSize; i++) {
   heavyList.push({
-    label: 'Option ' + (i + 1)
+    label: '' + (i + 1)
   })
 }
 
 export default {
   name: 'champbuild',
+  props: ["value"],
+
 
   setup () {
   
@@ -78,6 +80,17 @@ export default {
         paddingTop: '3px',
         paddingBottom: '3px'
       }
+    }
+  },
+  watch:{
+    build(){
+      this.champ = this.value
+    }
+  },
+
+  data () {
+    return{
+    champ : this.value
     }
   }
 }
