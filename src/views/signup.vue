@@ -57,7 +57,7 @@
                     </template>
                 </q-input>
 			</div>
-            <div style="height:20px"></div>
+            <div style="height:10px"></div>
 			<div>
 				<label for="name">닉네임</label>
 				<q-input
@@ -76,7 +76,7 @@
                 </q-input>
 			</div>
             <div style="height:10px"></div>
-			<q-btn color="black" type="submit" style="width:464px" label="가입하기" @click="registered"></q-btn>
+			<q-btn color="black" type="submit" style="width:464px; height:50px" label="가입하기" @click="registered"></q-btn>
 		</q-form>
 	</div>
 </template>
@@ -93,8 +93,8 @@ export default {
             emailCheckFlag: true,
             pwCheckFlag: true,
             nameCheckFlag: true,
-            pw_confirm:'',
-            passwordCheckFlag: true
+            passwordCheckFlag: true,
+            pw_confirm:''
 		};
 	},
 	methods: {

@@ -30,7 +30,7 @@
                 </template>
             </q-input>
             <div style="height:10px"></div>
-            <q-btn color="black" type="submit" style="width:464px" label="로그인하기"></q-btn>
+            <q-btn color="black" type="submit" style="width:464px; height:50px" label="로그인하기"></q-btn>
         </q-form>
     </div>
 </template>
@@ -62,7 +62,7 @@ export default {
                         if (res.status === 200) { 
                             // 로그인 성공시 처리해줘야할 부분
                             this.$store.commit("login", res.data);
-                            this.$router.push("이동할 페이지 path");
+                            this.$router.push('/sword-wind-build');
                         } 
                       }); 
             } catch (error) { 
