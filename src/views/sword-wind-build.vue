@@ -1,4 +1,9 @@
 <template>
+<br>
+<div class="row">
+  <div class="col-2">
+  </div>
+  <div class="col-8">
   <div class="q-pa-md">
     <q-layout view="lHh lpr lFf" container style="height: 300px" class="shadow-2 rounded-borders">
 
@@ -30,10 +35,10 @@
                   <q-card :id="props.row.name" v-ripple @click="select($event)" class="my-box cursor-pointer q-hoverable">
                     <q-img :src=props.row.url >
                       <div class="absolute-bottom text-subtitle2 text-center">
-                        <strong>{{ props.row.name }}</strong>
+                        <font size="1"><strong>{{ props.row.name }}</strong></font>
                       </div>
-                       <div class="absolute-top-right text-subtitle2">
-                        {{ props.row.line }}
+                      <div class="absolute-top-right text-subtitle2">
+                        <font size="1">{{ props.row.line }}</font>
                       </div>
                     </q-img>
                   </q-card>
@@ -45,11 +50,14 @@
       </q-page-container>
     </q-layout>
   </div>
-
+<br>
   <div>
     <champ-build v-bind:value="c_name" :key="rederkey"></champ-build>
   </div>
-
+  <div class="col-2">
+  </div>
+  </div>
+</div>
 </template>
 
 <script>
