@@ -5,7 +5,7 @@
     >
     <q-scroll-area
       dark
-      class="bg-dark text-white rounded-borders"
+      class="bg-gray text-black rounded-borders"
       :thumb-style="thumbStyle"
       :bar-style="barStyle"
       style="height: 400px"
@@ -16,7 +16,9 @@
         :items="heavyList"
         :virtual-scroll-item-size="32"
         separator
+        :filter="filter"
       >
+        
         <template v-slot="{ item, index }">
           <q-item
             :key="index"
@@ -40,7 +42,7 @@
                   <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png">
                 </q-avatar>
                 <q-avatar size="50px">
-                  <img src="https://w.namu.la/s/8f8c2bdf9e11c41d63924d236b55c7e51e3424fba7a22f7bb2e73279f50d68bcb2d28790cff24fed2e6f2b71fd8473a01b41b4ae5cd478d032db844baa74e2dd6c12f5a9553a5600c2213cf0044414b7b05f191f7b37b057ff624ca1fd1ef9de">
+                  <img src="https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Domination.png">
                 </q-avatar>
               </div>
             <!-- 스펠 -->
@@ -90,6 +92,24 @@
             </div>
             </q-item-section>
           </q-item>
+          <q-item>
+            <q-item-section>
+              <div class="col">
+                <q-avatar  size="40px">
+                  <img src="https://media.istockphoto.com/vectors/heart-symbol-of-love-and-valentines-day-flat-red-icon-isolated-on-vector-id1128400054?k=20&m=1128400054&s=612x612&w=0&h=xWJDi8K0l7DnTbpuboeVduewirVSZtuuAic6foxVTnI=">
+                </q-avatar>
+                130
+                <q-avatar  size="40px">
+                  <img src="https://pixsector.com/cache/d69e58d4/avbfe351f753bcaa24ae2.png">
+                </q-avatar>
+                64
+                <q-avatar  size="40px">
+                  <img src="https://static.vecteezy.com/system/resources/thumbnails/003/738/383/small/appointment-date-icon-free-vector.jpg">
+                </q-avatar>
+                22.2.15
+              </div>
+            </q-item-section>
+          </q-item>
         </template>
       </q-virtual-scroll>
     </q-scroll-area>
@@ -106,7 +126,7 @@ for (let i = 0; i < maxSize; i++) {
     label: '' + (i + 1)
   })
 }
-
+import { ref } from 'vue'
 export default {
   name: 'champbuild',
   props: ["value"],
@@ -116,6 +136,7 @@ export default {
   
       return {
       heavyList,
+      filter: ref(''),
 
       thumbStyle: {
         right: '5px',

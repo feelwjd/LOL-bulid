@@ -50,9 +50,32 @@
       </q-page-container>
     </q-layout>
   </div>
-<br>
+<div>
+</div>
   <div>
-    <champ-build v-bind:value="c_name" :key="rederkey"></champ-build>
+    <div class="q-pa-md">
+    <div class="q-gutter-y-md">
+      <q-card>
+        <q-tabs
+          v-model="tab"
+          dense
+          class="text-grey"
+          active-color="primary"
+          indicator-color="primary"
+          align="justify"
+          narrow-indicator
+        >
+          <q-tab name="mails" label="최신순" />
+          <q-tab name="alarms" label="추천순" />
+          <q-tab name="movies" label="저장순" />
+        </q-tabs>
+        <q-separator />
+        <div>
+          <champ-build v-bind:value="c_name" :key="rederkey"></champ-build>
+        </div>
+      </q-card>
+    </div>
+  </div>
   </div>
   <div class="col-2">
   </div>
@@ -211,7 +234,8 @@ export default {
       filter: ref(''),
       columns,
       rows,
-      c_name
+      c_name,
+      tab: ref('mails')
     }
   },
   data () {
